@@ -1,0 +1,30 @@
+body {
+    background-image: url(../IMMAGE/Copia\ di\ progetto\ sito\ \(1\).png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+.search-container {
+    display: flex;
+    gap: 10px;
+  }
+  
+  #searchBar {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+  }
+  
+  button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
