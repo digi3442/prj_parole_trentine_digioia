@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suggerisci — e-Trentin</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="../index.html" class="navbar-logo"><div class="logo-icon">📖</div><div class="logo-text"><div class="nome">e-Trentin</div><div class="tagline">La lingua delle nostre valli</div></div></a>
+    <ul class="navbar-links" id="navLinks">
+      <li><a href="dizionario.html">Dizionario</a></li>
+      <li><a href="progetto.html">Il Progetto</a></li>
+      <li><a href="suggerisci.html" class="active">Suggerisci</a></li>
+      <li><a href="cronologia.html">Cronologia</a></li>
+      <li><a href="contatti.html">Contatti</a></li>
+      <li><a href="crediti.html">Crediti</a></li>
+      <li><a href="admin.html" class="admin">Admin</a></li>
+    </ul>
+    <button class="nav-hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')"><span></span><span></span><span></span></button>
+  </nav>
+  <main>
+    <h1 class="page-title">Suggerisci una parola</h1>
+    <p class="page-subtitle">Conosci una parola del dialetto che non è ancora nel dizionario? Segnalacela!</p>
+
+    <div class="form-wrap">
+
+      <div class="form-group">
+        <label for="parolaInput">Parola in dialetto *</label>
+        <input type="text" id="parolaInput" placeholder="es. Sbìsol" required>
+      </div>
+
+      <div class="form-group">
+        <label for="traduzioneInput">Traduzione in italiano *</label>
+        <input type="text" id="traduzioneInput" placeholder="es. Fagiolo" required>
+      </div>
+
+      <div class="form-group">
+        <label for="categoriaInput">Categoria grammaticale</label>
+        <!-- MODIFICA: aggiungi/rimuovi opzioni secondo le abbreviazioni del progetto -->
+        <select id="categoriaInput">
+          <option value="">— Seleziona —</option>
+          <option value="sm">sm – Sostantivo maschile</option>
+          <option value="sf">sf – Sostantivo femminile</option>
+          <option value="np">np – Nome proprio</option>
+          <option value="vb">vb – Verbo</option>
+          <option value="avv">avv – Avverbio</option>
+          <option value="agg">agg – Aggettivo</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="descrizioneInput">Descrizione / contesto d'uso</label>
+        <textarea id="descrizioneInput" placeholder="Dove si usa? Cosa significa esattamente? Da dove viene?"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="nomeInput">Il tuo nome (opzionale)</label>
+        <input type="text" id="nomeInput" placeholder="es. Mario Rossi">
+      </div>
+
+      <button class="btn-primary" onclick="inviaForm()">Invia il suggerimento ✉️</button>
+
+      <!-- Appare dopo l'invio -->
+      <div class="alert-ok" id="alertOk">
+        ✅ Grazie! Il tuo suggerimento è stato ricevuto e verrà valutato dal team.
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand"><div class="logo-riga"><div class="logo-icon">📖</div><div class="logo-text"><div class="nome">e-Trentin</div><div class="tagline">La lingua delle nostre valli</div></div></div><p>Un progetto dedicato alla preservazione e diffusione del dialetto trentino.</p></div>
+      <div><h4>Navigazione</h4><ul><li><a href="dizionario.html">Dizionario</a></li><li><a href="progetto.html">Il Progetto</a></li><li><a href="contatti.html">Contatti</a></li><li><a href="crediti.html">Crediti</a></li></ul></div>
+      <div><h4>Contatti</h4><ul><li><div class="footer-contact-row">📷 @trentino_pills</div></li><li><a href="suggerisci.html" class="footer-contact-row">✉️ Invia un suggerimento</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">✦ &nbsp; © 2025 e-Trentin. Tutti i diritti riservati.</div>
+  </footer>
+  <script>
+    function inviaForm() {
+      const parola     = document.getElementById('parolaInput').value.trim();
+      const traduzione = document.getElementById('traduzioneInput').value.trim();
+      if (!parola || !traduzione) {
+        alert('Compila almeno la parola e la traduzione!');
+        return;
+      }
+      // Per ora solo messaggio di conferma.
+      // In futuro collegare a un backend (PHP / Google Forms / Airtable).
+      document.getElementById('alertOk').style.display = 'block';
+      document.getElementById('parolaInput').value = '';
+      document.getElementById('traduzioneInput').value = '';
+      document.getElementById('categoriaInput').value = '';
+      document.getElementById('descrizioneInput').value = '';
+      document.getElementById('nomeInput').value = '';
+    }
+  </script>
+</body>
+</html>

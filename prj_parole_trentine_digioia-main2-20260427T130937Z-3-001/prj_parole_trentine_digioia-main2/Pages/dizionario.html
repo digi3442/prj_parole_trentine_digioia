@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dizionario — e-Trentin</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="../index.html" class="navbar-logo">
+      <div class="logo-icon">📖</div>
+      <div class="logo-text">
+        <div class="nome">e-Trentin</div>
+        <div class="tagline">La lingua delle nostre valli</div>
+      </div>
+    </a>
+    <ul class="navbar-links" id="navLinks">
+      <li><a href="dizionario.html" class="active">Dizionario</a></li>
+      <li><a href="progetto.html">Il Progetto</a></li>
+      <li><a href="suggerisci.html">Suggerisci</a></li>
+      <li><a href="cronologia.html">Cronologia</a></li>
+      <li><a href="contatti.html">Contatti</a></li>
+      <li><a href="crediti.html">Crediti</a></li>
+      <li><a href="admin.html" class="admin">Admin</a></li>
+    </ul>
+    <button class="nav-hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </nav>
+
+  <main>
+    <h1 class="page-title">Dizionario</h1>
+    <p class="page-subtitle">Tutte le parole in ordine alfabetico. Usa la ricerca o naviga per lettera.</p>
+
+    <!-- Barra ricerca + filtri -->
+    <div class="dict-controls">
+      <div class="search-bar" style="margin:0; flex:1; max-width:420px;">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Cerca…" oninput="filtraParole()" autocomplete="off">
+        <button class="btn-cerca" onclick="filtraParole()">Cerca</button>
+      </div>
+      <select id="filtroCat" onchange="filtraParole()" style="padding:0.55rem 0.85rem; border:1.5px solid var(--grigio-bordo); border-radius:var(--radius); font-family:inherit; font-size:0.88rem; background:white; cursor:pointer;">
+        <option value="">Tutte le categorie</option>
+        <option value="sm">sm – Nome maschile</option>
+        <option value="sf">sf – Nome femminile</option>
+        <option value="np">np – Nome proprio</option>
+        <option value="vb">vb – Verbo</option>
+        <option value="avv">avv – Avverbio</option>
+        <option value="agg">agg – Aggettivo</option>
+      </select>
+    </div>
+
+    <!-- Navigazione rapida A B C ... -->
+    <div class="alpha-nav" id="alphaNav"></div>
+
+    <!-- Lista parole raggruppate per lettera — generata dal JS -->
+    <div id="listaParole"></div>
+
+    <p id="nessunaParola" style="display:none; color:var(--grigio-testo); margin-top:1rem;">
+      Nessuna parola trovata. Prova a cercare altro!
+    </p>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo-riga">
+          <div class="logo-icon">📖</div>
+          <div class="logo-text"><div class="nome">e-Trentin</div><div class="tagline">La lingua delle nostre valli</div></div>
+        </div>
+        <p>Un progetto dedicato alla preservazione e diffusione del dialetto trentino.</p>
+      </div>
+      <div>
+        <h4>Navigazione</h4>
+        <ul>
+          <li><a href="dizionario.html">Dizionario</a></li>
+          <li><a href="progetto.html">Il Progetto</a></li>
+          <li><a href="contatti.html">Contatti</a></li>
+          <li><a href="crediti.html">Crediti</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contatti</h4>
+        <ul>
+          <li><div class="footer-contact-row">📷 @trentino_pills</div></li>
+          <li><a href="suggerisci.html" class="footer-contact-row">✉️ Invia un suggerimento</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">✦ &nbsp; © 2025 e-Trentin. Tutti i diritti riservati.</div>
+  </footer>
+
+  <script>
+    function toggleMenu() { document.getElementById('navLinks').classList.toggle('open'); }
+
+    // =====================================================
+    // PAROLE — aggiungi qui le parole reali!
+    // Ogni voce ha: dialetto, traduzione, categoria (usa abbreviazioni: sm, sf, vb, agg, avv, np)
+    // =====================================================
+    const parole = [
+      { dialetto: "Andàr",   traduzione: "Andare",                       cat: "vb"  },
+      { dialetto: "Biàva",   traduzione: "Biada, mangime per animali",   cat: "sf"  },
+      { dialetto: "Cossa?",  traduzione: "Cosa? Che cosa?",              cat: "avv" },
+      { dialetto: "Fio",     traduzione: "Figlio, ragazzo",              cat: "sm"  },
+      { dialetto: "Lògo",    traduzione: "Stanco, esausto",              cat: "agg" },
+      { dialetto: "Molar",   traduzione: "Lasciare, mollare, smettere",  cat: "vb"  },
+      { dialetto: "Négher",  traduzione: "Scuro, buio",                  cat: "agg" },
+      { dialetto: "Pota!",   traduzione: "Esclamazione di sorpresa",     cat: "avv" },
+      { dialetto: "Sbìsol",  traduzione: "Fagiolo tipico trentino",      cat: "sm"  },
+      { dialetto: "Sbronar", traduzione: "Vantarsi, parlare troppo",     cat: "vb"  },
+      { dialetto: "Strambo", traduzione: "Strano, bizzarro",             cat: "agg" },
+      { dialetto: "Tòsa",    traduzione: "Ragazza giovane",              cat: "sf"  },
+    ];
+
+    let categoriaAttiva = '';
+
+    window.onload = function() {
+      // Legge eventuale ?q= nell'URL (dalla ricerca della homepage)
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('q')) {
+        document.getElementById('searchInput').value = params.get('q');
+      }
+      renderParole();
+    };
+
+    function filtraParole() {
+      categoriaAttiva = document.getElementById('filtroCat').value;
+      renderParole();
+    }
+
+    function renderParole() {
+      const query  = document.getElementById('searchInput').value.toLowerCase();
+      const cat    = document.getElementById('filtroCat').value;
+      const lista  = parole.filter(p =>
+        (!cat || p.cat === cat) &&
+        (p.dialetto.toLowerCase().includes(query) || p.traduzione.toLowerCase().includes(query))
+      ).sort((a, b) => a.dialetto.localeCompare(b.dialetto, 'it'));
+
+      const container = document.getElementById('listaParole');
+      const nav       = document.getElementById('alphaNav');
+      const nessuna   = document.getElementById('nessunaParola');
+
+      if (lista.length === 0) {
+        container.innerHTML = ''; nav.innerHTML = '';
+        nessuna.style.display = 'block'; return;
+      }
+      nessuna.style.display = 'none';
+
+      // Raggruppa per lettera
+      const gruppi = {};
+      lista.forEach(p => {
+        const l = p.dialetto[0].toUpperCase();
+        if (!gruppi[l]) gruppi[l] = [];
+        gruppi[l].push(p);
+      });
+      const lettere = Object.keys(gruppi).sort();
+
+      nav.innerHTML = lettere.map(l => `<a href="#l-${l}">${l}</a>`).join('');
+      container.innerHTML = lettere.map(l => `
+        <div id="l-${l}">
+          <div class="lettera-titolo">${l}</div>
+          ${gruppi[l].map(p => `
+            <div class="word-card">
+              <div>
+                <div class="dialetto">${p.dialetto}</div>
+                <div class="traduzione">${p.traduzione}</div>
+              </div>
+              <span class="cat-badge">${p.cat}</span>
+            </div>`).join('')}
+        </div>`).join('');
+    }
+  </script>
+</body>
+</html>

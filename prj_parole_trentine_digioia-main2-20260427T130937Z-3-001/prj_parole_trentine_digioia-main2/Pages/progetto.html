@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Il Progetto — e-Trentin</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="../index.html" class="navbar-logo"><div class="logo-icon">📖</div><div class="logo-text"><div class="nome">e-Trentin</div><div class="tagline">La lingua delle nostre valli</div></div></a>
+    <ul class="navbar-links" id="navLinks">
+      <li><a href="dizionario.html">Dizionario</a></li>
+      <li><a href="progetto.html" class="active">Il Progetto</a></li>
+      <li><a href="suggerisci.html">Suggerisci</a></li>
+      <li><a href="cronologia.html">Cronologia</a></li>
+      <li><a href="contatti.html">Contatti</a></li>
+      <li><a href="crediti.html">Crediti</a></li>
+      <li><a href="admin.html" class="admin">Admin</a></li>
+    </ul>
+    <button class="nav-hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')"><span></span><span></span><span></span></button>
+  </nav>
+  <main>
+    <h1 class="page-title">Il Progetto</h1>
+    <p class="page-subtitle">Presentazione, fonti e indicazioni per la ricerca.</p>
+
+    <div class="content-block">
+
+      <h3>Presentazione</h3>
+      <!-- MODIFICA: sostituisci con la presentazione ufficiale del progetto -->
+      <p>
+        <em>e-Trentin</em> è un dizionario digitale del dialetto trentino, nato con l'obiettivo
+        di raccogliere, preservare e rendere accessibile il patrimonio linguistico delle nostre valli.
+        Il progetto è promosso dall'ITT Buonarroti di Trento e supportato da esperti linguisti del territorio.
+      </p>
+
+      <h3>Fonti</h3>
+      <!-- MODIFICA: inserisci le fonti bibliografiche reali usate nel progetto -->
+      <p>
+        Le parole sono state raccolte da fonti bibliografiche locali, interviste ad anziani del territorio,
+        e materiali d'archivio. Ulteriori fonti verranno indicate man mano che il dizionario si arricchisce.
+      </p>
+
+      <h3>Indicazioni per la ricerca</h3>
+      <p>
+        È possibile cercare una parola sia in dialetto che in italiano utilizzando la barra di ricerca.
+        Il sistema supporta la ricerca parziale: digitando anche solo parte di una parola vengono mostrati
+        tutti i risultati corrispondenti. Si può filtrare per categoria grammaticale usando il menu apposito.
+      </p>
+
+      <h3>Abbreviazioni usate</h3>
+      <!-- Tabella abbreviazioni grammaticali -->
+      <table style="border-collapse:collapse; margin-top:0.5rem; font-size:0.88rem; width:100%; max-width:400px;">
+        <tr style="background:var(--panna);">
+          <th style="padding:0.4rem 0.7rem; border:1px solid var(--grigio-bordo); text-align:left;">Abr.</th>
+          <th style="padding:0.4rem 0.7rem; border:1px solid var(--grigio-bordo); text-align:left;">Significato</th>
+        </tr>
+        <!-- MODIFICA: aggiungi/rimuovi righe secondo le abbreviazioni reali -->
+        <tr><td style="padding:0.4rem 0.7rem; border:1px solid var(--grigio-bordo);">sm</td><td style="padding:0.4rem 0.7rem; border:1px solid var(--grigio-bordo);">sostantivo maschile</td></tr>
+        <tr><td style="padding:0.4rem 0.7rem; border:1px solid var(--grigio-bordo);">sf</td><td style="padding:0.4rem 0.7rem; border:1px solid var(--grigio-bordo);">sostantivo femminile</td></tr>
+        <tr><td style="padding:0.4rem 0.7rem; border:1px solid var(--grigio-bordo);">np</td><td style="padding:0.4rem 0.7rem; border:1px solid var(--grigio-bordo);">nome proprio</td></tr>
+        <tr><td style="padding:0.4rem 0.7rem; border:1px solid var(--grigio-bordo);">vb</td><td style="padding:0.4rem 0.7rem; border:1px solid var(--grigio-bordo);">verbo</td></tr>
+        <tr><td style="padding:0.4rem 0.7rem; border:1px solid var(--grigio-bordo);">avv</td><td style="padding:0.4rem 0.7rem; border:1px solid var(--grigio-bordo);">avverbio</td></tr>
+        <tr><td style="padding:0.4rem 0.7rem; border:1px solid var(--grigio-bordo);">agg</td><td style="padding:0.4rem 0.7rem; border:1px solid var(--grigio-bordo);">aggettivo</td></tr>
+      </table>
+
+      <h3>Suggerisci una parola</h3>
+      <p>Conosci una parola del dialetto che non è ancora nel dizionario?
+        <a href="suggerisci.html" style="color:var(--blu); font-weight:600;">Segnalacela qui →</a>
+      </p>
+
+    </div>
+  </main>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand"><div class="logo-riga"><div class="logo-icon">📖</div><div class="logo-text"><div class="nome">e-Trentin</div><div class="tagline">La lingua delle nostre valli</div></div></div><p>Un progetto dedicato alla preservazione e diffusione del dialetto trentino.</p></div>
+      <div><h4>Navigazione</h4><ul><li><a href="dizionario.html">Dizionario</a></li><li><a href="progetto.html">Il Progetto</a></li><li><a href="contatti.html">Contatti</a></li><li><a href="crediti.html">Crediti</a></li></ul></div>
+      <div><h4>Contatti</h4><ul><li><div class="footer-contact-row">📷 @trentino_pills</div></li><li><a href="suggerisci.html" class="footer-contact-row">✉️ Invia un suggerimento</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">✦ &nbsp; © 2025 e-Trentin. Tutti i diritti riservati.</div>
+  </footer>
+</body>
+</html>

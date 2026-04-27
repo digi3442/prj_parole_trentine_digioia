@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cronologia — e-Trentin</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="../index.html" class="navbar-logo"><div class="logo-icon">📖</div><div class="logo-text"><div class="nome">e-Trentin</div><div class="tagline">La lingua delle nostre valli</div></div></a>
+    <ul class="navbar-links" id="navLinks">
+      <li><a href="dizionario.html">Dizionario</a></li>
+      <li><a href="progetto.html">Il Progetto</a></li>
+      <li><a href="suggerisci.html">Suggerisci</a></li>
+      <li><a href="cronologia.html" class="active">Cronologia</a></li>
+      <li><a href="contatti.html">Contatti</a></li>
+      <li><a href="crediti.html">Crediti</a></li>
+      <li><a href="admin.html" class="admin">Admin</a></li>
+    </ul>
+    <button class="nav-hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')"><span></span><span></span><span></span></button>
+  </nav>
+  <main>
+    <h1 class="page-title">Cronologia del progetto</h1>
+    <p class="page-subtitle">Storia e tappe principali dello sviluppo di e-Trentin.</p>
+
+    <!-- MODIFICA: aggiungi/rimuovi eventi dalla timeline -->
+    <ul class="timeline">
+
+      <li>
+        <div class="anno">Anno scolastico 2024/2025</div>
+        <div class="evento">
+          Avvio del progetto nell'ambito del corso di Informatica presso l'ITT Buonarroti di Trento.
+          Ideazione della struttura del sito e della banca dati.
+        </div>
+      </li>
+
+      <li>
+        <div class="anno">Novembre 2024</div>
+        <div class="evento">
+          Prima raccolta lessicale: interviste ad anziani del territorio trentino
+          per documentare parole e locuzioni in disuso.
+        </div>
+      </li>
+
+      <li>
+        <div class="anno">Gennaio 2025</div>
+        <div class="evento">
+          Sviluppo del frontend: struttura HTML/CSS/JS del sito.
+          Implementazione della ricerca live e del dizionario alfabetico.
+        </div>
+      </li>
+
+      <li>
+        <div class="anno">Marzo 2025</div>
+        <div class="evento">
+          Prima versione pubblica del sito con un nucleo iniziale di vocaboli.
+          Apertura del form "Suggerisci" per contributi dalla comunità.
+        </div>
+      </li>
+
+      <li>
+        <div class="anno">In corso</div>
+        <div class="evento">
+          Aggiornamento continuo del dizionario. In futuro: aggiunta di audio con
+          pronuncia autentica e integrazione di una sezione dedicata ai proverbi.
+        </div>
+      </li>
+
+    </ul>
+  </main>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand"><div class="logo-riga"><div class="logo-icon">📖</div><div class="logo-text"><div class="nome">e-Trentin</div><div class="tagline">La lingua delle nostre valli</div></div></div><p>Un progetto dedicato alla preservazione e diffusione del dialetto trentino.</p></div>
+      <div><h4>Navigazione</h4><ul><li><a href="dizionario.html">Dizionario</a></li><li><a href="progetto.html">Il Progetto</a></li><li><a href="contatti.html">Contatti</a></li><li><a href="crediti.html">Crediti</a></li></ul></div>
+      <div><h4>Contatti</h4><ul><li><div class="footer-contact-row">📷 @trentino_pills</div></li><li><a href="suggerisci.html" class="footer-contact-row">✉️ Invia un suggerimento</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">✦ &nbsp; © 2025 e-Trentin. Tutti i diritti riservati.</div>
+  </footer>
+</body>
+</html>

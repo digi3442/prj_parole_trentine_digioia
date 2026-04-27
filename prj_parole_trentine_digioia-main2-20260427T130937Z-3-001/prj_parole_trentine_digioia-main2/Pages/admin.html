@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — e-Trentin</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="../index.html" class="navbar-logo"><div class="logo-icon">📖</div><div class="logo-text"><div class="nome">e-Trentin</div><div class="tagline">La lingua delle nostre valli</div></div></a>
+    <ul class="navbar-links" id="navLinks">
+      <li><a href="dizionario.html">Dizionario</a></li>
+      <li><a href="progetto.html">Il Progetto</a></li>
+      <li><a href="suggerisci.html">Suggerisci</a></li>
+      <li><a href="cronologia.html">Cronologia</a></li>
+      <li><a href="contatti.html">Contatti</a></li>
+      <li><a href="crediti.html">Crediti</a></li>
+      <li><a href="admin.html" class="admin">Admin</a></li>
+    </ul>
+    <button class="nav-hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')"><span></span><span></span><span></span></button>
+  </nav>
+  <main>
+    <h1 class="page-title">Area Admin</h1>
+    <p class="page-subtitle">Questa sezione è riservata agli amministratori del progetto.</p>
+
+    <div class="content-block">
+
+      <!-- Schermo di login semplice — in futuro collegare a un backend vero -->
+      <div id="loginBox" style="max-width:360px;">
+        <h3>Accesso riservato</h3>
+        <p style="margin-bottom:1rem;">Inserisci la password per accedere all'area di gestione.</p>
+
+        <div class="form-wrap" style="gap:0.75rem;">
+          <div class="form-group">
+            <label for="pwdInput">Password</label>
+            <input type="password" id="pwdInput" placeholder="••••••••">
+          </div>
+          <button class="btn-primary" onclick="loginAdmin()">Accedi</button>
+          <p id="errLogin" style="display:none; color:#c0392b; font-size:0.85rem;">Password errata.</p>
+        </div>
+      </div>
+
+      <!-- Contenuto admin (visibile dopo login) -->
+      <div id="adminContent" style="display:none;">
+        <h3 style="color:var(--blu); margin-bottom:1rem;">✅ Accesso effettuato</h3>
+        <p>
+          Da qui sarà possibile gestire le parole del dizionario, approvare i suggerimenti
+          degli utenti e aggiornare i contenuti del sito.
+        </p>
+        <!-- MODIFICA: aggiungi qui i pannelli di gestione reali -->
+        <p style="margin-top:1rem; color:var(--grigio-testo); font-style:italic;">
+          (Pannello di gestione da implementare in futuro)
+        </p>
+        <button class="btn-primary" style="margin-top:1rem;" onclick="logout()">Esci</button>
+      </div>
+
+    </div>
+  </main>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand"><div class="logo-riga"><div class="logo-icon">📖</div><div class="logo-text"><div class="nome">e-Trentin</div><div class="tagline">La lingua delle nostre valli</div></div></div><p>Un progetto dedicato alla preservazione e diffusione del dialetto trentino.</p></div>
+      <div><h4>Navigazione</h4><ul><li><a href="dizionario.html">Dizionario</a></li><li><a href="progetto.html">Il Progetto</a></li><li><a href="contatti.html">Contatti</a></li><li><a href="crediti.html">Crediti</a></li></ul></div>
+      <div><h4>Contatti</h4><ul><li><div class="footer-contact-row">📷 @trentino_pills</div></li><li><a href="suggerisci.html" class="footer-contact-row">✉️ Invia un suggerimento</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">✦ &nbsp; © 2025 e-Trentin. Tutti i diritti riservati.</div>
+  </footer>
+  <script>
+    // MODIFICA: cambia questa password con una più sicura.
+    // In futuro collegare a un backend vero con autenticazione.
+    const PASSWORD_ADMIN = 'dialetto2025';
+
+    function loginAdmin() {
+      const pwd = document.getElementById('pwdInput').value;
+      if (pwd === PASSWORD_ADMIN) {
+        document.getElementById('loginBox').style.display = 'none';
+        document.getElementById('adminContent').style.display = 'block';
+      } else {
+        document.getElementById('errLogin').style.display = 'block';
+      }
+    }
+
+    function logout() {
+      document.getElementById('loginBox').style.display = 'block';
+      document.getElementById('adminContent').style.display = 'none';
+      document.getElementById('pwdInput').value = '';
+    }
+
+    // Login anche premendo Invio
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('pwdInput').addEventListener('keypress', e => {
+        if (e.key === 'Enter') loginAdmin();
+      });
+    });
+  </script>
+</body>
+</html>

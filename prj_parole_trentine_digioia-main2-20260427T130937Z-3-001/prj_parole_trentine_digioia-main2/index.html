@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>e-Trentin — Dizionario del dialetto di Trento</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+       ============================================================ -->
+  <nav class="navbar">
+
+    <!-- Logo a sinistra -->
+    <a href="index.html" class="navbar-logo">
+      <div class="logo-icon">📖</div>
+      <div class="logo-text">
+        <div class="nome">e-Trentin</div>
+        <div class="tagline">La lingua delle nostre valli</div>
+      </div>
+    </a>
+
+    <!-- Link di navigazione -->
+    <!-- Su mobile questi si nascondono; il bottone hamburger li mostra -->
+    <ul class="navbar-links" id="navLinks">
+      <li><a href="Pages/dizionario.html">Dizionario</a></li>
+      <li><a href="Pages/progetto.html">Il Progetto</a></li>
+      <li><a href="Pages/suggerisci.html">Suggerisci</a></li>
+      <li><a href="Pages/cronologia.html">Cronologia</a></li>
+      <li><a href="Pages/contatti.html">Contatti</a></li>
+      <li><a href="Pages/crediti.html">Crediti</a></li>
+      <li><a href="Pages/admin.html" class="admin">Admin</a></li>
+    </ul>
+
+    <!-- Hamburger mobile -->
+    <button class="nav-hamburger" onclick="toggleMenu()" title="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+
+  <!-- ============================================================
+       HERO — sezione principale con sfondo montagna
+       ============================================================
+       Per cambiare immagine sfondo: vai in style.css, cerca ".hero::before"
+       e modifica background-image.
+       ============================================================ -->
+  <section class="hero">
+    <div class="hero-content">
+
+      <!--
+        MASCOTTE:
+        Metti un'immagine (es. orsetto) in images/mascotte.png
+        e decommenta la riga sotto. Per ora è nascosta.
+      -->
+      <!-- <img src="images/mascotte.png" alt="Mascotte" class="hero-mascot"> -->
+
+      <p class="hero-eyebrow">▲ DAL CUORE DELLE DOLOMITI ▲</p>
+
+      <!-- Il titolo: "Dizionario" in blu, "Trentino" in blu, "io" in oro -->
+      <h1 class="hero-title">
+        Diz<span class="oro">io</span>nario<br>Trentino
+      </h1>
+
+      <p class="hero-subtitle">
+        Esplora la ricchezza del dialetto trentino.
+        Cerca tra vocaboli, verbi e locuzioni delle nostre valli.
+      </p>
+
+      <!-- MODIFICA: aggiorna il numero quando aggiungi parole al dizionario -->
+      <p class="hero-counter" id="contatore">… vocaboli nel dizionario</p>
+
+      <!-- Barra di ricerca -->
+      <div class="search-bar">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Cerca una parola in dialetto o italiano…" autocomplete="off">
+        <button class="btn-cerca" onclick="cercaParola()">Cerca</button>
+      </div>
+
+      <!-- Controlli filtro -->
+      <div class="search-controls">
+
+        <!--
+          "Entrambe le direzioni": ricerca in dialetto E in italiano.
+          In futuro si può aggiungere logica JS per filtrare solo in un senso.
+        -->
+        <button class="ctrl-btn active" id="btnDirezione" onclick="toggleDirezione()">
+          ⇆ Entrambe le direzioni
+        </button>
+
+        <!--
+          "Tutte le categorie": apre un dropdown per filtrare per tipo di parola.
+        -->
+        <button class="ctrl-btn" id="btnCategoria" onclick="toggleCategoria()">
+          ⊞ Tutte le categorie
+        </button>
+
+      </div>
+
+      <!-- Dropdown categorie (nascosto di default) -->
+      <div id="dropCategoria" style="display:none; margin-top:0.75rem; background:white; border:1px solid var(--grigio-bordo); border-radius:var(--radius); padding:0.75rem; max-width:300px; margin-left:auto; margin-right:auto; text-align:left; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+        <div style="font-size:0.78rem; font-weight:700; color:var(--grigio-testo); margin-bottom:0.5rem; text-transform:uppercase; letter-spacing:0.06em;">Filtra per categoria</div>
+        <!-- MODIFICA: aggiungi/rimuovi categorie qui secondo le abbreviazioni nel doc -->
+        <label style="display:block; padding:0.3rem 0; font-size:0.88rem; cursor:pointer;">
+          <input type="radio" name="cat" value="tutte" checked> Tutte le categorie
+        </label>
+        <label style="display:block; padding:0.3rem 0; font-size:0.88rem; cursor:pointer;">
+          <input type="radio" name="cat" value="sm"> sm – Nome maschile
+        </label>
+        <label style="display:block; padding:0.3rem 0; font-size:0.88rem; cursor:pointer;">
+          <input type="radio" name="cat" value="sf"> sf – Nome femminile
+        </label>
+        <label style="display:block; padding:0.3rem 0; font-size:0.88rem; cursor:pointer;">
+          <input type="radio" name="cat" value="np"> np – Nome proprio
+        </label>
+        <label style="display:block; padding:0.3rem 0; font-size:0.88rem; cursor:pointer;">
+          <input type="radio" name="cat" value="vb"> vb – Verbo
+        </label>
+        <label style="display:block; padding:0.3rem 0; font-size:0.88rem; cursor:pointer;">
+          <input type="radio" name="cat" value="avv"> avv – Avverbio
+        </label>
+        <label style="display:block; padding:0.3rem 0; font-size:0.88rem; cursor:pointer;">
+          <input type="radio" name="cat" value="agg"> agg – Aggettivo
+        </label>
+      </div>
+
+    </div><!-- fine .hero-content -->
+  </section>
+
+
+  <!-- ============================================================
+       4 FEATURE CARD
+       ============================================================ -->
+  <section class="features">
+    <div class="features-grid">
+
+      <div class="feature-card">
+        <div class="feature-icon">📚</div>
+        <h3>Dizionario completo</h3>
+        <p>Migliaia di vocaboli con definizioni dettagliate e esempi d'uso.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔊</div>
+        <h3>Pronuncia audio</h3>
+        <p>Ascolta la pronuncia corretta di ogni parola dialettale.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">✨</div>
+        <h3>Parola del giorno</h3>
+        <p>Ogni giorno una parola scelta a caso per arricchire il tuo vocabolario.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">👥</div>
+        <h3>Contributi della comunità</h3>
+        <p>Aiutaci ad arricchire il dizionario con le tue segnalazioni.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER a 3 colonne
+       ============================================================ -->
+  <footer>
+    <div class="footer-inner">
+
+      <!-- Colonna 1: Brand -->
+      <div class="footer-brand">
+        <div class="logo-riga">
+          <div class="logo-icon">📖</div>
+          <div class="logo-text">
+            <div class="nome">e-Trentin</div>
+            <div class="tagline">La lingua delle nostre valli</div>
+          </div>
+        </div>
+        <p>Un progetto dedicato alla preservazione e diffusione del dialetto trentino.</p>
+      </div>
+
+      <!-- Colonna 2: Navigazione -->
+      <div>
+        <h4>Navigazione</h4>
+        <ul>
+          <li><a href="Pages/dizionario.html">Dizionario</a></li>
+          <li><a href="Pages/progetto.html">Il Progetto</a></li>
+          <li><a href="Pages/contatti.html">Contatti</a></li>
+          <li><a href="Pages/crediti.html">Crediti</a></li>
+        </ul>
+      </div>
+
+      <!-- Colonna 3: Contatti -->
+      <div>
+        <h4>Contatti</h4>
+        <ul>
+          <!-- MODIFICA: aggiorna con i contatti reali -->
+          <li>
+            <div class="footer-contact-row">📷 @trentino_pills</div>
+          </li>
+          <li>
+            <a href="Pages/suggerisci.html" class="footer-contact-row">✉️ Invia un suggerimento</a>
+          </li>
+        </ul>
+      </div>
+
+    </div><!-- fine .footer-inner -->
+
+    <div class="footer-bottom">
+      ✦ &nbsp; © 2025 e-Trentin — Dizionario Trentino. Tutti i diritti riservati.
+    </div>
+  </footer>
+
+
+  <!-- ============================================================
+       JAVASCRIPT
+       ============================================================ -->
+  <script>
+    // --- Menu mobile hamburger ---
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+
+    // --- Dropdown categoria ---
+    function toggleCategoria() {
+      const d = document.getElementById('dropCategoria');
+      const b = document.getElementById('btnCategoria');
+      const aperto = d.style.display === 'block';
+      d.style.display = aperto ? 'none' : 'block';
+      b.classList.toggle('active', !aperto);
+    }
+
+    // --- Toggle direzione ricerca ---
+    let direzione = 'entrambe'; // 'entrambe' | 'dialetto' | 'italiano'
+    function toggleDirezione() {
+      // Cicla tra le tre opzioni
+      if (direzione === 'entrambe') {
+        direzione = 'dialetto';
+        document.getElementById('btnDirezione').textContent = '→ Solo dialetto';
+      } else if (direzione === 'dialetto') {
+        direzione = 'italiano';
+        document.getElementById('btnDirezione').textContent = '← Solo italiano';
+      } else {
+        direzione = 'entrambe';
+        document.getElementById('btnDirezione').textContent = '⇆ Entrambe le direzioni';
+      }
+    }
+
+    // --- Ricerca: vai alla pagina dizionario con il termine ---
+    function cercaParola() {
+      const q = document.getElementById('searchInput').value.trim();
+      if (q) {
+        window.location.href = `Pages/dizionario.html?q=${encodeURIComponent(q)}`;
+      }
+    }
+
+    // Permette di cercare anche premendo Invio
+    document.getElementById('searchInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') cercaParola();
+    });
+
+    // --- Contatore parole ---
+    // Importa il numero di parole dall'array nel dizionario
+    // Per ora usiamo un valore fisso; in futuro si sincronizza con i dati
+    document.getElementById('contatore').textContent = '12 vocaboli nel dizionario';
+  </script>
+
+</body>
+</html>
